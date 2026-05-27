@@ -26,12 +26,14 @@ export default function InvestmentCalculator() {
     }));
   };
 
+  const inputIsValid = investmentData.duration > 0 && investmentData.expectedReturn > 0 && investmentData.annualInvestment > 0 && investmentData.initialInvestment > 0
 
   return (
     <>
       <Header />
       <Calculator handleCalculatorInputsChange={handleCalculatorInputsChange} investmentData={investmentData} />
-      <ResultTable investmentResult={investmentResult} investmentData={investmentData} />
+      {!inputIsValid && <p className="center">Input data is invalid!</p>}
+      {inputIsValid && <ResultTable investmentResult={investmentResult} investmentData={investmentData} />}
     </>
   );
 }
