@@ -1,3 +1,23 @@
 {
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": false,
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Always generate commit messages using this format: type(scope): message"
+    },
+    {
+      "text": "The type must describe the kind of change, for example: feat, fix, refactor, chore, docs, style, test, perf."
+    },
+    {
+      "text": "The scope must describe the changed area of the codebase, for example: auth, cart, products, checkout, api, ui."
+    },
+    {
+      "text": "The message must be short, clear, and written in English."
+    },
+    {
+      "text": "Use lowercase for type and scope."
+    },
+    {
+      "text": "Do not end the message with a period."
+    }
+  ]
 }
