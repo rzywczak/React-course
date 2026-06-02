@@ -7,7 +7,7 @@ const MainContent = ({ selectedProject, isAddedNewProject, ...props} ) => {
   const projectCount = projects.length
   
   const showAddFirstProjectMessage = projectCount === 0 && !isAddedNewProject;
-  const showSelectProjectMessage = projectCount > 0 && !selectedProject;
+  const showSelectProjectMessage = projectCount > 0 && !selectedProject && !isAddedNewProject;
   const showProjectForm = isAddedNewProject;
   const showProjectDetails = projectCount > 0 && selectedProject;
 
