@@ -4,7 +4,7 @@ import { TaskForm } from "./TaskForm";
 
 const ProjectDetails = ({ selectedProject, ...props }) => {
   const { title, description, date, id } = selectedProject;
-  const { handleClickDeleteProject, handleAddTask, handleShowTaskForm, handleOnChangeTaskInput, showTaskForm, tasks } = props
+  const { handleClickDeleteProject, handleAddTask, handleShowTaskForm, handleOnChangeTaskInput, handleClickCancelAddTask, showTaskForm, tasks } = props
 
   const currentProjectTasks = selectedProject ? tasks.filter(( task ) => task.projectId === selectedProject.id) : []
 
@@ -36,7 +36,7 @@ const ProjectDetails = ({ selectedProject, ...props }) => {
       Add Task
     </button>
   </div>
-  {showTaskForm ? <TaskForm projectId={id} handleAddTask={handleAddTask} handleOnChangeTaskInput={handleOnChangeTaskInput}/> : <Tasks tasks={currentProjectTasks} /> }
+  {showTaskForm ? <TaskForm projectId={id} handleAddTask={handleAddTask} handleOnChangeTaskInput={handleOnChangeTaskInput} handleClickCancelAddTask={handleClickCancelAddTask} /> : <Tasks tasks={currentProjectTasks} /> }
 </div>
   );
 };

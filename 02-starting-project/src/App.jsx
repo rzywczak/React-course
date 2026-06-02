@@ -97,6 +97,7 @@ function App() {
         handleClickDeleteProject={handleClickDeleteProject}
         handleAddTask={handleAddTask}
         handleShowTaskForm={handleShowTaskForm}
+        handleClickCancelAddTask={handleClickCancelAddTask }
         handleOnChangeTaskInput={handleOnChangeTaskInput}
       />
     </main>
