@@ -1,6 +1,6 @@
 const ProjectForm = ({ handleClickSaveProject, handleClickCancelProject, handleChangeInputsProject }) => {
     return (
-        <form onSubmit={handleClickSaveProject} className="w-[50%]">
+        <form onSubmit={(e) => handleClickSaveProject(e)} className="w-[50%]">
             <h2 className="text-xl font-bold text-stone-500 my-4">Add Project</h2>
             <div className="flex flex-row gap-4 justify-end">
                 <button onClick={(e) => handleClickCancelProject(e)} className="text-stone-700 hover:text-stone-950">

@@ -31,10 +31,12 @@ function App() {
         setIsAddedNewProject(true);
     };
 
-    const handleClickSaveProject = () => {
+    const handleClickSaveProject = (e) => {
+        e.preventDefault();
         const id = crypto.randomUUID();
         setProjects([...projects, { ...newProject, id }]);
         setIsAddedNewProject(false);
+        setNewProject({});
     };
 
     const handleClickCancelProject = (e) => {
