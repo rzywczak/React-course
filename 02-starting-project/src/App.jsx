@@ -1,105 +1,113 @@
-import { useState } from "react";
-import MainContent from "./components/MainContent";
-import Sidebar from "./components/Sidebar";
-
+import { useState } from 'react';
+import MainContent from './components/MainContent';
+import Sidebar from './components/Sidebar';
 
 function App() {
+    const mockProjectData = [
+        {
+            title: 'Project API 1',
+            description: 'Good project REST API',
+            date: '2003-04-03',
+            id: '1',
+        },
+        {
+            title: 'Project API 2',
+            description: 'Good project REST API',
+            date: '2003-04-03',
+            id: '2',
+        },
+    ];
 
-  const mockProjectData = [ { title: "Project API 1", description: "Good project REST API", date: "2003-04-03", id: "1"},{ title: "Project API 2", description: "Good project REST API", date: "2003-04-03", id: "2"}]
+    const [isAddedNewProject, setIsAddedNewProject] = useState(false);
+    const [newProject, setNewProject] = useState({});
+    const [projects, setProjects] = useState(mockProjectData);
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const [showTaskForm, setShowTaskForm] = useState(false);
+    const [currentTask, setCurrentTask] = useState();
 
-  const [isAddedNewProject, setIsAddedNewProject] = useState(false);
-  const [newProject, setNewProject] = useState({ 
-    title: "",
-    description: "",
-    date: ""
-  });
-  const [projects, setProjects] = useState(mockProjectData)
-  const [selectedProject, setSelectedProject] = useState(null)
-  const [tasks, setTasks] = useState([])
-  const [showTaskForm, setShowTaskForm ] = useState(false)
-  const [currentTask, setCurrentTask] = useState()
+    const handleClickAddProject = () => {
+        setSelectedProject(false);
+        setIsAddedNewProject(true);
+    };
 
+    const handleClickSaveProject = (e) => {
+        e.preventDefault();
+        const id = crypto.randomUUID();
+        setProjects([...projects, { ...newProject, id }]);
+        setIsAddedNewProject(false);
+        setNewProject({});
+    };
 
-  const handleClickAddProject = () => {
-    setSelectedProject(false)
-    setIsAddedNewProject(true);
-  };
+    const handleClickCancelProject = (e) => {
+        e.preventDefault();
+        setIsAddedNewProject(false);
+    };
 
-  const handleClickSaveProject = () => {
-    const id = crypto.randomUUID();
-    setProjects([...projects, {...newProject, id }])
-    setIsAddedNewProject(false);
-  };
+    const handleChangeInputsProject = (e) => {
+        const inputValue = e.target.value;
+        const inputId = e.target.id;
 
-  const handleClickCancelProject = (e) => {
-    e.preventDefault();
-    setIsAddedNewProject(false);
-  };
+        setNewProject((prev) => ({ ...prev, [inputId]: inputValue }));
+    };
 
-  const handleChangeInputsProject = (e) => {
-    const inputValue = e.target.value
-    const inputId = e.target.id
+    const handleClickDeleteProject = (id) => {
+        const deletedProjectId = id;
 
-    setNewProject((prev) => ({...newProject, [inputId]: inputValue}))
-  }
+        const deletedProject = projects.filter((project) => project.id !== deletedProjectId);
+        setProjects([...deletedProject]);
+        setSelectedProject(null);
+    };
 
-  const handleClickDeleteProject = (id) => {
-    const deletedProjectId = id
+    const handleClickShowProject = (e) => {
+        const projectId = e.target.id;
+        const selectedProject = projects.find((project) => project.id === projectId);
+        setIsAddedNewProject(false);
+        setSelectedProject(selectedProject);
+        setShowTaskForm(false);
+    };
 
-    const deletedProject = projects.filter( project => project.id !== deletedProjectId )
-    console.log(deletedProject)
-    setProjects([...deletedProject])
-    setSelectedProject(null)
+    const handleAddTask = (e, projectId) => {
+        e.preventDefault();
+        const taskId = crypto.randomUUID();
 
-  }
+        setShowTaskForm(false);
+        setTasks((prevTasks) => [...prevTasks, { id: taskId, text: currentTask, projectId }]);
+    };
 
-  const handleClickShowProject = (e) => {
-    const projectId = e.target.id
-    console.log(typeof projectId)
-    const selectedProject = projects.find((project) => project.id === projectId)
-    console.log(selectedProject)
-    setIsAddedNewProject(false);
-    setSelectedProject(selectedProject)
-    setShowTaskForm(false)
-  }
+    const handleShowTaskForm = () => {
+        setShowTaskForm(true);
+    };
 
-  const handleAddTask = (e, projectId) => {
-    e.preventDefault()
-    const taskId = crypto.randomUUID();
+    const handleOnChangeTaskInput = (task) => {
+        setCurrentTask(task);
+    };
 
-    setShowTaskForm(false)
-    setTasks((prevTasks) => [...prevTasks, { id: taskId, text: currentTask, projectId}])
+    const handleClickCancelAddTask = () => {
+        setShowTaskForm(false);
+    };
 
-  }
-
-  const handleShowTaskForm = () => {
-    setShowTaskForm(true)
-  }
-  
-  const handleOnChangeTaskInput = (task) => {
-    setCurrentTask(task)
-  }
-
-  return (
-    <main className="h-screen my-8 flex gap-8">
-      <Sidebar handleClickAddProject={handleClickAddProject} projects={projects} handleClickShowProject={handleClickShowProject} />
-      <MainContent
-        isAddedNewProject={isAddedNewProject}
-        selectedProject={selectedProject}
-        projects={projects}
-        showTaskForm={showTaskForm}
-        tasks={tasks}
-        currentTask={currentTask}
-        handleClickSaveProject={handleClickSaveProject}
-        handleClickCancelProject={handleClickCancelProject}
-        handleChangeInputsProject={handleChangeInputsProject}
-        handleClickDeleteProject={handleClickDeleteProject}
-        handleAddTask={handleAddTask}
-        handleShowTaskForm={handleShowTaskForm}
-        handleOnChangeTaskInput={handleOnChangeTaskInput}
-      />
-    </main>
-  );
+    return (
+        <main className="h-screen my-8 flex gap-8">
+            <Sidebar handleClickAddProject={handleClickAddProject} projects={projects} handleClickShowProject={handleClickShowProject} />
+            <MainContent
+                isAddedNewProject={isAddedNewProject}
+                selectedProject={selectedProject}
+                projects={projects}
+                showTaskForm={showTaskForm}
+                tasks={tasks}
+                currentTask={currentTask}
+                handleClickSaveProject={handleClickSaveProject}
+                handleClickCancelProject={handleClickCancelProject}
+                handleChangeInputsProject={handleChangeInputsProject}
+                handleClickDeleteProject={handleClickDeleteProject}
+                handleAddTask={handleAddTask}
+                handleShowTaskForm={handleShowTaskForm}
+                handleClickCancelAddTask={handleClickCancelAddTask}
+                handleOnChangeTaskInput={handleOnChangeTaskInput}
+            />
+        </main>
+    );
 }
 
 export default App;

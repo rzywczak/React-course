@@ -1,9 +1,11 @@
-import React from 'react'
-
 const Tasks = ({ tasks }) => {
-  return (
-    <div>{tasks.map(({text}) => <div>{text}</div>)}</div>
-  )
-}
+    return (
+        <div>
+            {tasks.map(({ text, id }) => (
+                <div key={id}>{text}</div>
+            ))}
+        </div>
+    );
+};
 
-export default Tasks
+export default Tasks;
