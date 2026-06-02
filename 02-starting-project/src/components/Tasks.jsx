@@ -2,7 +2,7 @@ import React from 'react'
 
 const Tasks = ({ tasks }) => {
   return (
-    <div>{tasks.map(({text}) => <div>{text}</div>)}</div>
+    <div>{tasks.map(({text, id}) => <div key={id} >{text}</div>)}</div>
   )
 }
 
