@@ -47,7 +47,6 @@ function App() {
     const deletedProjectId = id
 
     const deletedProject = projects.filter( project => project.id !== deletedProjectId )
-    console.log(deletedProject)
     setProjects([...deletedProject])
     setSelectedProject(null)
 
@@ -55,9 +54,7 @@ function App() {
 
   const handleClickShowProject = (e) => {
     const projectId = e.target.id
-    console.log(typeof projectId)
     const selectedProject = projects.find((project) => project.id === projectId)
-    console.log(selectedProject)
     setIsAddedNewProject(false);
     setSelectedProject(selectedProject)
     setShowTaskForm(false)

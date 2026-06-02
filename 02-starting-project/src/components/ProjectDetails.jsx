@@ -7,8 +7,6 @@ const ProjectDetails = ({ selectedProject, ...props }) => {
   const { handleClickDeleteProject, handleAddTask, handleShowTaskForm, handleOnChangeTaskInput, showTaskForm, tasks } = props
 
   const currentProjectTasks = selectedProject ? tasks.filter(( task ) => Number(task.projectId) === Number(selectedProject.id)) : []
-  console.log(currentProjectTasks)
-  console.log(selectedProject.id)
 
   return (
 <div className="w-[50%] mt-16 mr-8">
