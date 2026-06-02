@@ -6,7 +6,7 @@ const ProjectDetails = ({ selectedProject, ...props }) => {
   const { title, description, date, id } = selectedProject;
   const { handleClickDeleteProject, handleAddTask, handleShowTaskForm, handleOnChangeTaskInput, showTaskForm, tasks } = props
 
-  const currentProjectTasks = selectedProject ? tasks.filter(( task ) => Number(task.projectId) === Number(selectedProject.id)) : []
+  const currentProjectTasks = selectedProject ? tasks.filter(( task ) => task.projectId === selectedProject.id) : []
 
   return (
 <div className="w-[50%] mt-16 mr-8">
