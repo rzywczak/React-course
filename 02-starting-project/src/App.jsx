@@ -40,7 +40,7 @@ function App() {
     const inputValue = e.target.value
     const inputId = e.target.id
 
-    setNewProject((prev) => ({...newProject, [inputId]: inputValue}))
+    setNewProject((prev) => ({...prev, [inputId]: inputValue}))
   }
 
   const handleClickDeleteProject = (id) => {
