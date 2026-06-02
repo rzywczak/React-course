@@ -77,6 +77,10 @@ function App() {
     setCurrentTask(task)
   }
 
+  const handleClickCancelAddTask = () => {
+    setShowTaskForm(false)
+  }
+
   return (
     <main className="h-screen my-8 flex gap-8">
       <Sidebar handleClickAddProject={handleClickAddProject} projects={projects} handleClickShowProject={handleClickShowProject} />

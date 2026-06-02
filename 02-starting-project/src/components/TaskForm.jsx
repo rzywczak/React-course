@@ -8,7 +8,8 @@ export const TaskForm = ({ handleAddTask, handleOnChangeTaskInput, projectId }) 
     <form onSubmit={(e) => handleAddTask(e, projectId)} className="p-[25px] mt-[25px] border border-black">
       <div className="flex flex-row gap-4 justify-end">
         <button
-        //   onClick={(e) => handleClickCancelProject(e)}
+          type="button"
+          onClick={handleClickCancelAddTask}
           className="text-stone-700 hover:text-stone-950"
         >
           Cancel
