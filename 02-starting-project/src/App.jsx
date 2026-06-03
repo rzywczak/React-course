@@ -88,7 +88,7 @@ function App() {
     };
 
     return (
-        <main className="h-screen my-8 flex gap-8">
+        <main className="min-h-screen bg-zinc-100 text-zinc-950 md:flex">
             <Sidebar handleClickAddProject={handleClickAddProject} projects={projects} handleClickShowProject={handleClickShowProject} />
             <MainContent
                 isAddedNewProject={isAddedNewProject}
